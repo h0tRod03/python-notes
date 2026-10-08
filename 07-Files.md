@@ -255,11 +255,11 @@ with open('info.txt', 'r') as fp:
 
 		# write user input to file until empty string
 
-	with open('userInput.txt', 'w') as fp:
-    	ui = input('Enter some characters or simply enter to quit: ')
-    	while ui:
-        	fp.write(ui + '\n')
-        	ui = input('Enter some characters or simply enter to quit: ')
+	with open('userInput.txt', 'w') as fp:                                   #creates file and opens in write mode, names it fp
+    	ui = input('Enter some characters or simply enter to quit: ')        #gives variable ui value of user input
+    	while ui != "": 
+        	fp.write(ui + '\n')                                              #While user input isn't empty, write that input into the file on a newline
+        	ui = input('Enter some characters or simply enter to quit: ')    #asks user for input, keeps getting new answer
 
-	with open('userInput.txt', 'r') as fp:
-    	print(fp.read())
+	with open('userInput.txt', 'r') as fp:                                   #opens file in read mode
+    	print(fp.read())                                                     #prints contents of whole file
