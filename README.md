@@ -1,2 +1,3 @@
 # python-notes
-CyBOLC Python
+
+Collection of notes for Python. 
