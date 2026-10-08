@@ -181,3 +181,85 @@ with open("info.txt", "w") as data_obj:
 			    print(fp.read())         
            
 ------------------------------------------------------------------------------------------------           
+# .writelines Method
+
+
+# writelines() - method for writing a list to a file
+
+data = [("California", 39937489, "Sacramento"),
+       ("Texas", 29472295, "Austin"),
+       ("Florida", 21992985, "Tallahassee")]
+
+linesToWrite = []
+for state, population, capital in data:
+    linesToWrite.append(f'{state}, {population}, {capital}\n')
+
+with open('info.txt', 'w') as fp:
+    fp.writelines(linesToWrite)
+
+with open('info.txt', 'r') as fp:
+    print(fp.read())
+
+------------------------------------------------------------------------------------------------ 
+
+# Seek and Tell 
+
+	# seek(pos) -  used with files to move the file's "cursor" to a particular position. seek(0) positions the read/write pointer to the beginning of the file.
+	# tell() - returns the current read/write position in the file.
+
+	with open('info.txt', 'r') as fp:
+    print(fp.read(5)) #reads first 5 characters
+    print(fp.tell())  #tells us where the cursor currently is
+    fp.seek(0)        #moves cursor back to beginning
+    print(fp.read(11))#reads first 11 characters
+    print(fp.tell())  #tells us where the cursor currently is
+    fp.seek(0)        #moves cursor back to beginning
+    print(fp.read())  #reads everything from cursor position
+    print(fp.tell())  #tells us where the cursor currently is
+
+------------------------------------------------------------------------------------------------ 
+
+#multi-mode 
+
+# 'r+' - lets you read and write to the file. The file must already exist. It does NOT erase what's already in the file.
+
+# 'w+' - lets you read and write to the file. If the file already exists, it ERASES everything in it first. If it doesn't exist, Python creates it.
+
+# 'a+' - lets you read and write to the file. It keeps everything already there, and starts you at the END of the file when you open it.
+
+
+	with open('info.txt', 'r+') as fp:
+    	print(fp.tell())
+    	print(fp.read())
+
+	with open('info.txt', 'a+') as fp:
+    	print(fp.tell())
+    	print(fp.read())
+
+------------------------------------------------------------------------------------------------ 
+
+# Open two files with one statement
+
+	# copy one file to another using one with statatemnt
+
+	with open('info.txt', 'r') as inFile, open('copyInfo.txt', 'w') as outFile:
+    	contents = inFile.read()
+    	outFile.write(contents)
+
+	with open('copyInfo.txt', 'r') as fp:
+   		print(fp.read())
+
+------------------------------------------------------------------------------------------------ 
+
+# Continually write user input into a file
+
+		# write user input to file until empty string
+
+	with open('userInput.txt', 'w') as fp:
+    	ui = input('Enter some characters or simply enter to quit: ')
+    	while ui:
+        	fp.write(ui + '\n')
+        	ui = input('Enter some characters or simply enter to quit: ')
+
+	with open('userInput.txt', 'r') as fp:
+    	print(fp.read())
